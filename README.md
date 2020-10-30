@@ -14,3 +14,6 @@ $ conan create .
 ```
 
 # Build in docker
+```shell
+$ docker run -it -v$(pwd):/home/conan/project --rm gcc:8.0 /bin/bash
+```
