@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Neverhooda/ts_lesson_1.svg?branch=main)](https://travis-ci.org/Neverhooda/ts_lesson_1)
 # ts_lesson_1
 How to work with conan in docker
 ---
