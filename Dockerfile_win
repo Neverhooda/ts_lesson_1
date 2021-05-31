@@ -1,0 +1,10 @@
+FROM ubuntu 
+LABEL description="Container for use with Visual Studio" 
+
+RUN apt-get update && apt-get install -y g++ rsync zip openssh-server make python3-pip cmake
+RUN pip3 install conan 
+RUN mkdir -p /var/run/sshd
+RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \ 
+   ssh-keygen -A 
+
+EXPOSE 22

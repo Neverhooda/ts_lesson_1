@@ -34,3 +34,8 @@
 # Conan
 *.pyc
 test_package/build
+
+# VS
+.vs/
+out/build
+CMakeSettings.json

@@ -22,4 +22,4 @@ class LibtsTestConan(ConanFile):
     def test(self):
         if not tools.cross_building(self):
             os.chdir("bin")
-            self.run(".%sexample" % os.sep)
+            self.run(".%sPackageTest" % os.sep)
