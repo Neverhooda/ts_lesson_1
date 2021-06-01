@@ -3,7 +3,7 @@ from conans import ConanFile, CMake
 
 class LibtsConan(ConanFile):
     name = "libts"
-    version = "1.2"
+    version = "1.0"
     license = "<Put the package license here>"
     author = "<Put your name here> <And your email here>"
     url = "<Package recipe repository url here, for issues about the package>"
