@@ -39,3 +39,6 @@ test_package/build
 .vs/
 out/build
 CMakeSettings.json
+
+# Conan home inside docker
+.conan/
