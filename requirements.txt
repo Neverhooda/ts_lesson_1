@@ -1,0 +1,4 @@
+conan==1.40.4
+markupsafe==2.0.1
+conan-package-tools==0.36.0
+cmake==3.21.3
