@@ -54,3 +54,44 @@ Add user
 ## VS 
 See doc:
 - https://docs.google.com/document/d/1akLBaoePIyXEf3WMLZP2NnVmeFoGmbkAS6cPPnWOOhg/edit?usp=sharing
+
+# ts_lesson_3
+Make and pinned versions
+
+## Dependents
+- make (GNU make 4.2+)
+- docker
+
+## Pinned versions
+Python tools are pinned in `requirements.txt`, the Makefile reads the conan version from it
+and passes it to `docker build`:
+
+| Tool | Version |
+|---|---|
+| conan | 1.40.4 |
+| conan-package-tools | 0.36.0 |
+| cmake | 3.21.3 |
+| docker image for build | conanio/gcc8:1.40.4 |
+| docker image for VS | ubuntu:20.04 |
+
+```shell
+$ make versions
+```
+
+## Targets
+```shell
+$ make help
+$ make deps      # pip3 install -r requirements.txt
+$ make package   # conan create on the host
+$ make build     # conan create inside docker
+$ make shell     # shell inside docker
+$ make image-win # image for Visual Studio
+$ make run-win
+$ make clean
+```
+
+Variables can be overridden from the command line:
+```shell
+$ make package PROFILE=gcc_profile
+$ make run-win SSH_PORT=5022
+```
