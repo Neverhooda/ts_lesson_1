@@ -7,6 +7,7 @@ RUN apt-get -y install python3-pip
 RUN apt-get install -y gdb gdbserver
 COPY requirements.txt /tmp/
 RUN pip3 install -r /tmp/requirements.txt
+ENV CONAN_REVISIONS_ENABLED 1
 RUN mkdir -p /var/run/sshd
 RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \ 
    ssh-keygen -A 

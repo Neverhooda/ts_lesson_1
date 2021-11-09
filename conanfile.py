@@ -12,6 +12,7 @@ class LibtsConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
     default_options = {"shared": False}
+    requires = "fmt/8.0.1#826bcee69ee04232ff9864766afa728c"
     generators = "cmake"
     exports_sources = ["src/*", "CMakeLists.txt", "test_package/*"]
 

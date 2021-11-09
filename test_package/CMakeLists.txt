@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.12)
 project(PackageTest CXX)
 
-if (EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR AND EXISTS ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
     include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
     conan_basic_setup(TARGETS)
 else ()

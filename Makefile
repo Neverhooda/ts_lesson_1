@@ -4,6 +4,8 @@ PROFILE   ?= default
 SSH_PORT  ?= 5000
 PROJECT   := /home/conan/project
 
+export CONAN_REVISIONS_ENABLED := 1
+
 UBUNTU_VERSION ?= 20.04
 CONAN_VERSION  := $(patsubst conan==%,%,$(filter conan==%,$(file < requirements.txt)))
 

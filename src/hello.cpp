@@ -1,10 +1,15 @@
 #include <iostream>
+#include <fmt/format.h>
 #include "hello.h"
 
-void hello(){
+std::string greeting(){
     #ifdef NDEBUG
-    std::cout << "Hello World Release!" <<std::endl;
+    return fmt::format("Hello World {}!", "Release");
     #else
-    std::cout << "Hello World Debug!" <<std::endl;
+    return fmt::format("Hello World {}!", "Debug");
     #endif
+}
+
+void hello(){
+    std::cout << greeting() << std::endl;
 }
