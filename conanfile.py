@@ -14,12 +14,16 @@ class LibtsConan(ConanFile):
     default_options = {"shared": False}
     requires = "fmt/8.0.1#826bcee69ee04232ff9864766afa728c"
     generators = "cmake"
-    exports_sources = ["src/*", "CMakeLists.txt", "test_package/*"]
+    exports_sources = ["src/*", "tests/*", "CMakeLists.txt", "test_package/*"]
+
+    def build_requirements(self):
+        self.build_requires("gtest/1.11.0#12a4d978bed45770a20e2f7737664dc2", force_host_context=True)
 
     def build(self):
         cmake = CMake(self)
         cmake.configure(source_folder='.')
         cmake.build()
+        cmake.test()
 
         # Explicit way:
         # self.run('cmake %s/hello %s'
