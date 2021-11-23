@@ -69,6 +69,7 @@ and passes it to `docker build`:
 | Tool | Version |
 |---|---|
 | conan | 1.40.4 |
+| markupsafe | 2.0.1 |
 | conan-package-tools | 0.36.0 |
 | cmake | 3.21.3 |
 | docker image for build | conanio/gcc8:1.40.4 |
@@ -94,4 +95,41 @@ Variables can be overridden from the command line:
 ```shell
 $ make package PROFILE=gcc_profile
 $ make run-win SSH_PORT=5022
+```
+
+# ts_lesson_4
+Dependencies from ConanCenter
+
+## Dependencies
+| Package | Version | Recipe revision | Used for |
+|---|---|---|---|
+| fmt | 8.0.1 | 826bcee69ee04232ff9864766afa728c | `requires`, formatting in `src/hello.cpp` |
+| gtest | 1.11.0 | 12a4d978bed45770a20e2f7737664dc2 | `build_requires`, unit tests in `tests/` |
+
+A version alone is not enough: ConanCenter keeps updating recipes of the same version,
+and a new recipe revision may need a newer conan client. Pinning the recipe revision
+(`fmt/8.0.1#826bcee...`) keeps the build reproducible. Revisions must be enabled,
+the Makefile and both Dockerfiles set it:
+```shell
+$ export CONAN_REVISIONS_ENABLED=1
+```
+
+gtest is added with `force_host_context=True`, so it is built for the target platform
+but does not become a dependency of `libts` consumers.
+
+## Build and test
+`conan create` builds the library, runs the unit tests with `ctest` and then runs `test_package`:
+```shell
+$ make build
+$ make package PROFILE=gcc_profile
+```
+
+Debug build:
+```shell
+$ conan create . -pr gcc_profile -s build_type=Debug --build missing
+```
+
+Show the dependency graph:
+```shell
+$ conan info .
 ```
